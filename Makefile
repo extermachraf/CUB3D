@@ -2,7 +2,8 @@ NAME = CUB3D
 CC = cc
 SRC = main.c \
 	 ./get_next_line/get_next_line.c \
-	 ./parsing/return_map.c
+	 ./parsing/return_map.c \
+	 ./towd_map/src_2d.c
 FLAGS = -Wall -Wextra -Werror
 FLA = -lmlx -framework OpenGL -framework AppKit -g
 ARG = -o
