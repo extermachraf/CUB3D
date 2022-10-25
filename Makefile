@@ -3,7 +3,9 @@ CC = cc
 SRC = main.c \
 	 ./get_next_line/get_next_line.c \
 	 ./parsing/return_map.c \
-	 ./towd_map/src_2d.c
+	 ./parsing/parse_outils.c \
+	 ./parsing/lexer.c \
+	 ./parsing/pars_outils1.c
 FLAGS = -Wall -Wextra -Werror
 FLA = -lmlx -framework OpenGL -framework AppKit -g
 ARG = -o

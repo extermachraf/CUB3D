@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/21 16:51:51 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/25 01:09:33 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,53 +22,42 @@ int	exit_mouse(int key)
 	return (0);
 }
 
-int render_rec(cub3d_t *cub, int size, int color, int x, int y)
+void    init_globals()
 {
-    int i;
-    int j;
-
-    i = y;
-    while(i < y + size)
-    {
-        j = x;
-        while(j < x + size)
-            mlx_pixel_put(cub->mlx, cub->win, j++, i, color);
-        i++;
-    }
-    return(0);
+    flag_no = 1;
+    flag_so = 1;
+    flag_we = 1;
+    flag_ea = 1;
+    flag_f = 1;
+    flag_c = 1;
+    take_the_map = 6;
 }
-int    draw_2d_map(cub3d_t *cub)
-{
-    int x;
-    int y;
-
-    y = 0;
-    while(cub->map[y])
-    {
-        x = 0;
-        while(cub->map[y][x])
-        {
-            if(cub->map[y][x] == '1')
-                render_rec(cub, 32, 0xFFFF, x, y);
-            else if(cub->map[y][x] == '0')
-                render_rec(cub, 32, 0xFFFF, x, y);
-            x++;
-        }
-        y++;
-    }   
-    return(0);
-} 
 
 int main(int ac, char **av)
 {
-    cub3d_t *cub = NULL;
+    cub3d_t *cub;
+    
     if(ac != 2)
         return(0);
-    cub = init_cub(av[1]);
-    cub->mlx = mlx_init();
-    cub->win = mlx_new_window(cub->mlx,WITH ,HIGHT, "CUB3D");
-    draw_2d_map(cub);
-    mlx_hook(cub->win, 17, 1L << 0, exit_mouse, &cub);
-    mlx_loop(cub->mlx);
+    init_globals();
+    cub = malloc(sizeof(cub3d_t));
+    cub = return_map(av[1], cub);
+    printf("NO == %s\n", cub->NO);
+    printf("SO == %s\n", cub->SO);
+    printf("EA == %s\n", cub->EA);
+    printf("WE == %s\n", cub->WE);
+    //----------floooor----------------
+    printf("FLOR COLOR :\n");
+    for(int i = 0; i < 3 ; i++)
+        printf("%d\n", cub->f_col[i]);
+    printf("CIEL COLOR :\n");
+     for(int i = 0; i < 3 ; i++)
+        printf("%d\n", cub->c_col[i]);
+    // cub = init_cub(av[1]);
+    // cub->mlx = mlx_init();
+    // cub->win = mlx_new_window(cub->mlx,WITH ,HIGHT, "CUB3D");
+    // draw_2d_map(cub);
+    // mlx_hook(cub->win, 17, 1L << 0, exit_mouse, &cub);
+    // mlx_loop(cub->mlx);
     // mlx_key_hook(nd.win, management, &cub);
 }
