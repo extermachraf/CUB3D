@@ -5,11 +5,15 @@ SRC = main.c \
 	 ./parsing/return_map.c \
 	 ./parsing/parse_outils.c \
 	 ./parsing/lexer.c \
-	 ./parsing/pars_outils1.c
-FLAGS = -Wall -Wextra -Werror
+	 ./parsing/pars_outils1.c \
+	 ./parsing/take_map.c \
+	 ./parsing/linked_outils.c \
+	 ./parsing/check_map.c \
+	 ./parsing/check_map1.c
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 FLA = -lmlx -framework OpenGL -framework AppKit -g
 ARG = -o
-
+#-fsanitize=address
 all : $(NAME)
 
 $(NAME): $(SRC)

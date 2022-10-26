@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:27:22 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 01:04:31 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/25 02:01:29 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void    free_double_p(char **str)
 int lent_double_p(char **str)
 {
     int i;
-
+    
     i = 0;
+    if(!str)
+        return(0);
     while(str[i])
         i++;
     return(i);

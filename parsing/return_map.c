@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:14:49 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 01:11:54 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/26 02:27:24 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_mssg(char *str)
 {
-	printf("%s\n", str);
+	ft_putstr(str);
 	exit(1);	
 }
 
@@ -43,7 +43,7 @@ void	err_fre_lex_cub(t_lexer *lexer, cub3d_t *cub)
 	free(lexer->src);
 	free(lexer);
 	free(cub);
-	exit_mssg("INVALID MAP !!");
+	exit_mssg("INVALID MAP !!\n");
 }
 
 void	fill_info(cub3d_t *cub, char *map)
@@ -86,11 +86,13 @@ void	fill_info(cub3d_t *cub, char *map)
 			cub->c_col = take_col(lexer, cub, "C");
 		}
 		else if(take_the_map == 0)
-			cub->map = take_map(lexer, cub);
+			cub->map = swap_to_double(take_map(lexer));
 		else
-			err_fre_lex_cub(cub, lexer);
+			err_fre_lex_cub(lexer, cub);
 		lexer_advance(lexer);
 	}
+	free(lexer->src);
+	free(lexer);
 }
 
 cub3d_t	*return_map(char *av, cub3d_t *cub)

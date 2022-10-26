@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 01:09:33 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/26 02:32:47 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void    init_globals()
 int main(int ac, char **av)
 {
     cub3d_t *cub;
-    
+
     if(ac != 2)
         return(0);
     init_globals();
     cub = malloc(sizeof(cub3d_t));
     cub = return_map(av[1], cub);
+    check_map(cub);
     printf("NO == %s\n", cub->NO);
     printf("SO == %s\n", cub->SO);
     printf("EA == %s\n", cub->EA);
@@ -50,9 +51,14 @@ int main(int ac, char **av)
     printf("FLOR COLOR :\n");
     for(int i = 0; i < 3 ; i++)
         printf("%d\n", cub->f_col[i]);
+    //---------ciel--------------------
     printf("CIEL COLOR :\n");
-     for(int i = 0; i < 3 ; i++)
+    for(int i = 0; i < 3 ; i++)
         printf("%d\n", cub->c_col[i]);
+    //----------map-------------------
+    printf("MAP:\n");
+    for(int i = 0 ; cub->map[i] ; i++)
+        printf("{%s}\n", cub->map[i]);
     // cub = init_cub(av[1]);
     // cub->mlx = mlx_init();
     // cub->win = mlx_new_window(cub->mlx,WITH ,HIGHT, "CUB3D");
@@ -61,3 +67,9 @@ int main(int ac, char **av)
     // mlx_loop(cub->mlx);
     // mlx_key_hook(nd.win, management, &cub);
 }
+
+
+//1 -player
+//sur by walls
+//espace
+//player inside map

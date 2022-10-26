@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 02:00:38 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 00:52:27 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/25 01:16:01 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 char	*check_id(t_lexer *lexer, cub3d_t *cub, char *str)
 {
+	take_the_map--;
 	lexer_advance(lexer);
 	if(ft_strlen(str) > 1)
 	{

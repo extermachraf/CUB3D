@@ -11,6 +11,12 @@ int flag_f;
 int flag_c;
 int take_the_map;
 
+typedef struct t_map
+{
+    char *str;
+    struct t_map *next;
+}   t_map;
+
 typedef struct cub3d_t
 {
     void	*mlx;
@@ -20,7 +26,7 @@ typedef struct cub3d_t
     char    direction;
     int     *f_col;
     int     *c_col;
-    char    *map;
+    char    **map;
     char    *info;
     char    *NO;
     char    *SO;
@@ -57,4 +63,22 @@ void    free_double_p(char **str);
 int     lent_double_p(char **str);
 int     check_numbers(char **str);
 char    **find_er(t_lexer *lexer, cub3d_t *cub, char *str);
+char    *take_line(t_lexer *lexer);
+t_map    *take_map(t_lexer *lexer);
+t_map   *init_map(char *str);
+void	token_add_back(t_map **map, char *value);
+char    **swap_to_double(t_map *map);
+int     lst_size(t_map *map);
+void	exit_mssg(char *str);
+void    check_map(cub3d_t *cub);
+void    free_cub(cub3d_t *cub);
+int     all_element(char **map);
+int     sur_by_walls(char **map);
+int     check_1(char **str);
+int     skip_space_start(char *str);
+int     skip_space_end(char *str);
+int     find_wall(char **str, int i, int j);
+int     check_spaces(char **str);
+int     check_first_line(char **str);
+int     check_last_line(char **str);
 #endif
