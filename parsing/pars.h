@@ -81,4 +81,6 @@ int     find_wall(char **str, int i, int j);
 int     check_spaces(char **str);
 int     check_first_line(char **str);
 int     check_last_line(char **str);
+int     check_zeros(char **str, int i, int j);
+int     one_player(char **str, cub3d_t *cub);
 #endif

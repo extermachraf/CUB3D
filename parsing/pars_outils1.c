@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:27:22 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 02:01:29 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/27 00:50:14 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,34 @@ char    **find_er(t_lexer *lexer, cub3d_t *cub, char *str)
         err_fre_lex_cub(lexer, cub);
     }
     return(spl_tmp);
+}
+
+int one_player(char **str, cub3d_t *cub)
+{
+    int i;
+    int j;
+    int calc;
+    
+    i = 0;
+    j = 0;
+    calc = 0;
+    while(str[i])
+    {
+        j = 0;
+        while(str[i][j])
+        {
+            if(str[i][j] == 'N' || str[i][j] == 'S'
+                || str[i][j] == 'E' || str[i][j] == 'W')
+            {
+                cub->x_player = j;
+                cub->y_player = i;
+                calc++;
+            }
+            j++;
+        }
+        i++;
+    }
+    if(calc != 1)
+        return(1);
+    return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 02:04:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/26 04:16:26 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/27 01:24:45 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int skip_space_end(char *str)
     int i;
 
     i = ft_strlen(str) - 1;
-    while(i >= 0 && str[i] == ' ')
+    while(i >= 0 && str[i] < 32)
         i--;
     return(i);
 }
@@ -116,7 +116,8 @@ void    free_cub(cub3d_t *cub)
 void    check_map(cub3d_t *cub)
 {
     if(all_element(cub->map) || sur_by_walls(cub->map)
-        || check_1(cub->map) || check_spaces(cub->map))
+        || check_1(cub->map) || check_spaces(cub->map)
+        || one_player(cub->map, cub))
     {
         free_cub(cub);
         exit_mssg("INVALID MAP !!");

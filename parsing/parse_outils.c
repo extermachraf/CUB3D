@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 02:00:38 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/25 01:16:01 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/27 01:02:06 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,12 @@ int	*take_col(t_lexer *lexer, cub3d_t *cub, char *str)
 
 	tmp = check_id(lexer, cub, str);
 	spl_tmp = find_er(lexer, cub, tmp);
-	// printf("----------------------------\n");
-	// for(int i = 0 ; spl_tmp[i]; i++)
-	// 	printf("%s\n", spl_tmp[i]);
-	// printf("----------------------------\n");
 	color = malloc(sizeof(int) * 3);
 	i = 0;
 	while(spl_tmp[i])
 	{
 		color[i] = ft_atoi(spl_tmp[i]);
-		if(color[i] >= 255)
+		if(color[i] > 255)
 		{
 			free(color);
 			free_double_p(spl_tmp);

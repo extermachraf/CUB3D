@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/26 02:32:47 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/27 01:06:20 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int main(int ac, char **av)
     printf("MAP:\n");
     for(int i = 0 ; cub->map[i] ; i++)
         printf("{%s}\n", cub->map[i]);
+    printf("%d\n", cub->x_player);
+    printf("%d\n", cub->y_player);
     // cub = init_cub(av[1]);
     // cub->mlx = mlx_init();
     // cub->win = mlx_new_window(cub->mlx,WITH ,HIGHT, "CUB3D");
