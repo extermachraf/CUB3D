@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:09:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/24 04:58:53 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/10/27 02:01:42 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 ///////////////////////////
 #include "./get_next_line/get_next_line.h"
-#include "./libft/libft.h"
+#include "./libftt/libft.h"
 #include "./parsing/pars.h"
 # include <stdio.h>
 # include <stdlib.h>

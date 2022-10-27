@@ -17,11 +17,11 @@ ARG = -o
 all : $(NAME)
 
 $(NAME): $(SRC)
-	make -C ./libft
-	$(CC) $(FLAGS) $(FLA) $(SRC) $(ARG) $(NAME) ./libft/libft.a
+	make -C ./libftt
+	$(CC) $(FLAGS) $(FLA) $(SRC) $(ARG) $(NAME) ./libftt/libft.a
 
 clean :
-	cd libft && rm -rf *.o
+	cd libftt && rm -rf *.o
 	rm -rf CUB3D.dSYM
 	rm -f $(NAME)
 
