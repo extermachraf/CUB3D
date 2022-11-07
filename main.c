@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 07:50:42 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/07 08:26:41 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(int ac, char **av)
     cub = malloc(sizeof(cub3d_t));
     cub = return_map(av[1], cub);
     check_map(cub);
+    cub->rays = malloc(sizeof(t_rays) * 30);
     // printf("NO == %s\n", cub->NO);
     // printf("SO == %s\n", cub->SO);
     // printf("EA == %s\n", cub->EA);

@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 02:08:04 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 07:56:19 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:38:31 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,17 @@ void    draw_angl_view(cub3d_t *cub)
     }
 }
 
+double normalizeangle(double rayangle)
+{
+    rayangle = remainder(rayangle, M_2_PI);
+    if(rayangle < 0)
+        rayangle += M_2_PI;
+    return(rayangle);
+}
+
 void    cast_ray(double rayangle, int ray)
 {
-    
+    rayangle = normalizeangle(rayangle);
 }
 
 void    draw_rays(cub3d_t *cub)
@@ -90,13 +98,13 @@ void    draw_rays(cub3d_t *cub)
     ray = 0;
     while(ray < NUM_RAYS)
     {
-        cast_ray(rayangle, ray);
-        // i = 0;
-        // while(i < 200)
-        // {
-        //     pixelput(cub, (cub->x_player * 64 - cos(rayangle) * i) + 32, (cub->y_player * 64 - sin(rayangle) * i) + 32, 0xff0000);
-        //     i++;
-        // }
+        // cast_ray(rayangle, ray);
+        i = 0;
+        while(i < 200)
+        {
+            pixelput(cub, (cub->x_player * 64 - cos(rayangle) * i) + 32, (cub->y_player * 64 - sin(rayangle) * i) + 32, 0xff0000);
+            i++;
+        }
         rayangle += VIEW_ANGLE / NUM_RAYS;
         ray++;
     }

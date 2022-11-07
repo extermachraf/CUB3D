@@ -22,6 +22,19 @@ typedef struct s_tood{
 	int hight;
 }	t_tood;
 
+typedef struct s_rays
+{
+    double  rayangle;
+    double  wall_Hit_X;
+    double  wall_Hit_y;
+    double  distance;
+    double  was_hit_vert;
+    int     is_face_up;
+    int     is_face_down;
+    int     is_face_left;
+    int     is_face_right; 
+}   t_rays;
+
 typedef struct cub3d_t
 {
     void	*mlx;
@@ -34,6 +47,7 @@ typedef struct cub3d_t
     int     *c_col;
     char    **map;
     char    *info;
+    t_rays  *rays;
     char    *NO;
     char    *SO;
     char    *EA;
