@@ -17,12 +17,18 @@ typedef struct t_map
     struct t_map *next;
 }   t_map;
 
+typedef struct s_tood{
+	int with;
+	int hight;
+}	t_tood;
+
 typedef struct cub3d_t
 {
     void	*mlx;
 	void	*win;
-    int     x_player;
-    int     y_player;
+    double     x_player;
+    double     y_player;
+    double      ang;
     char    direction;
     int     *f_col;
     int     *c_col;
@@ -32,6 +38,12 @@ typedef struct cub3d_t
     char    *SO;
     char    *EA;
     char    *WE;
+    int     b;
+    int     l;
+    int     e;
+    void    *img;
+    int     *add;
+    t_tood *todmap;
 }   cub3d_t;
 
 typedef struct lexer

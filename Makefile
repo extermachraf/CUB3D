@@ -9,8 +9,10 @@ SRC = main.c \
 	 ./parsing/take_map.c \
 	 ./parsing/linked_outils.c \
 	 ./parsing/check_map.c \
-	 ./parsing/check_map1.c
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+	 ./parsing/check_map1.c \
+	 ./2DMAP/get_info.c \
+	 ./2DMAP/drw_2d_map.c
+FLAGS =# -Wall -Wextra -Werror -fsanitize=address
 FLA = -lmlx -framework OpenGL -framework AppKit -g
 ARG = -o
 #-fsanitize=address

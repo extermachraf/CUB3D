@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:09:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/27 02:01:42 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/07 07:33:53 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "./get_next_line/get_next_line.h"
 #include "./libftt/libft.h"
 #include "./parsing/pars.h"
+#include "./2DMAP/todmap.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -28,8 +29,9 @@
 # define HIGHT 640
 # define BUFFER_SIZE 1
 # define TILE_SIZE 32
-# define MAP_ROWS 8
-# define MAP_COLS 42
+# define VIEW_ANGLE 1.0472
+# define NUM_RAYS 30
+# define INCR 0.0349066
 
 
 
