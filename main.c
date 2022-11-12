@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 08:26:41 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:41:35 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,34 @@ void    init_globals()
     take_the_map = 6;
 }
 
+void    render_2d_map(cub3d_t *cub)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(cub->map[i])
+    {
+        j = 0;
+        while(cub->map[i][j])
+        {
+            if(cub->map[i][j] == '1')
+                draw_car(cub, i, j);
+            j++;
+        }
+        i++;
+    }
+}
+
+void    draw(cub3d_t *cub)
+{
+    cub->x_player = cub->x_player * TILE_SIZE + TILE_SIZE / 2;
+    cub->y_player = cub->y_player * TILE_SIZE + TILE_SIZE / 2;
+    render_2d_map(cub);
+    draw_player(cub);
+    draw_angl_view(cub);
+}
+
 int main(int ac, char **av)
 {
     cub3d_t *cub;
@@ -44,7 +72,7 @@ int main(int ac, char **av)
     cub = malloc(sizeof(cub3d_t));
     cub = return_map(av[1], cub);
     check_map(cub);
-    cub->rays = malloc(sizeof(t_rays) * 30);
+    cub->rays = malloc(sizeof(t_rays) * NUM_RAYS);
     // printf("NO == %s\n", cub->NO);
     // printf("SO == %s\n", cub->SO);
     // printf("EA == %s\n", cub->EA);
@@ -66,14 +94,15 @@ int main(int ac, char **av)
     // cub = init_cub(av[1]);
     cub->todmap = get_info_of2d(cub);
     cub->mlx = mlx_init();
-    cub->win = mlx_new_window(cub->mlx,cub->todmap->with * 64 ,cub->todmap->hight * 64, "CUB3D");
-    cub->img = mlx_new_image(cub->mlx, cub->todmap->with * 64, cub->todmap->hight * 64);
+    cub->win = mlx_new_window(cub->mlx,cub->todmap->with ,cub->todmap->hight, "CUB3D");
+    cub->img = mlx_new_image(cub->mlx, cub->todmap->with, cub->todmap->hight);
     cub->add = (int*)mlx_get_data_addr(cub->img, &cub->b, &cub->l, &cub->e);
-    draw_2d_map(cub);
+    // draw_2d_map(cub);
+    draw(cub);
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
     mlx_hook(cub->win, 2, 0, manag, cub);
     mlx_loop_hook(cub->mlx, new_map, cub);
-    mlx_hook(cub->win, 17, 1L << 0, exit_mouse, &cub);
+    // mlx_hook(cub->win, 17, 1L << 0, exit_mouse, &cub);
     mlx_loop(cub->mlx);
     // mlx_key_hook(nd.win, management, &cub);
 }

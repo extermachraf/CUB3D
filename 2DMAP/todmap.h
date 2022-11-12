@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 01:33:23 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 07:41:08 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:14:33 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,29 @@
 # define KEY_W 13
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+#define FACE_UP 11
+#define FACE_DOWN 22
+#define FACE_RIGHT 33
+#define FACE_LEFT 44
+#define HORZ 55
 
 t_tood	*get_info_of2d(cub3d_t *cub);
 int		calc_with(char **map);
 int		calc_hight(char **map);
-void    draw_2d_map(cub3d_t *cub);
+// void    draw_2d_map(cub3d_t *cub);
 void    draw_car(cub3d_t *cub, int i, int j);
 int     manag(int keycode, cub3d_t *cub);
 int     new_map(cub3d_t *cub);
 void    draw_rays(cub3d_t *cub);
+void    pixelput(cub3d_t *cub, int x, int y, int color);
+void    draw_walls(cub3d_t *cub);
+void    draw_player(cub3d_t *cub);
+void    draw_angl_view(cub3d_t *cub);
+double  normalizeangle(double rayangle);
+void    cast_ray(double rayangle, int ray, cub3d_t *cub);
+int     face_up_down(double angle);
+int     face_right_left(double angle);
+int map_has_wall(cub3d_t *cub, double x, double y);
+void    draw(cub3d_t *cub);
+void    render_2d_map(cub3d_t *cub);
 #endif

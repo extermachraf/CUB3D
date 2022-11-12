@@ -13,7 +13,7 @@ SRC = main.c \
 	 ./2DMAP/get_info.c \
 	 ./2DMAP/drw_2d_map.c
 FLAGS =# -Wall -Wextra -Werror -fsanitize=address
-FLA = -lmlx -framework OpenGL -framework AppKit -g
+FLA = -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address
 ARG = -o
 #-fsanitize=address
 all : $(NAME)

@@ -6,28 +6,30 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 02:08:04 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 10:38:31 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:15:01 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 
-void pixelput(cub3d_t *cub, int x, int y, int color)
+void pixelput(cub3d_t *cub, int x,int y, int color)
 {
-    cub->add[x + y * cub->todmap->with * 64] = color;
+    // if(x >= 0 && x <= cub->todmap->with && y >= 0 && y <= cub->todmap->hight)
+    printf("x === %d ; y === %d\n", x, y);
+        cub->add[x + y * cub->todmap->with] = color;
 }
 
 void    draw_car(cub3d_t *cub, int i, int j)
 {
     int x = 0;
     int y = 0;
-    while(y < 64)
+    while(y < TILE_SIZE)
     {
         x = 0;
-        while(x < 64)
+        while(x < TILE_SIZE)
         {
-            pixelput(cub, j * 64 + x , i * 64 + y, 0xFF);
+            pixelput(cub, j * TILE_SIZE + x , i * TILE_SIZE + y, 0xFF);
             x++;
         }
         y++;
@@ -59,7 +61,7 @@ void    draw_player(cub3d_t *cub)
 
     while (i < 360)
     {
-        pixelput(cub, ((cub->x_player) * 64 + cos(i) * 5) + 32, ((cub->y_player) * 64 + sin(i) * 5) + 32, 0xff0000);
+        pixelput(cub, ((cub->x_player) + cos(i) * 5), ((cub->y_player) + sin(i) * 5), 0xff0000);
         i++;
     }
 }
@@ -68,43 +70,53 @@ void    draw_angl_view(cub3d_t *cub)
 {
     int i = 0;
 
-    while (i < 80)
+    while (i < 30)
     {
-        pixelput(cub, (cub->x_player * 64 - cos(cub->ang) * i) + 32, (cub->y_player * 64 - sin(cub->ang) * i) + 32, 0xff0000);
+        pixelput(cub, (cub->x_player - cos(cub->ang) * i), (cub->y_player - sin(cub->ang) * i), 0xff0000);
         i++;
     }
 }
 
-double normalizeangle(double rayangle)
-{
-    rayangle = remainder(rayangle, M_2_PI);
-    if(rayangle < 0)
-        rayangle += M_2_PI;
-    return(rayangle);
-}
+// double normalizeangle(double rayangle)
+// {
+//     rayangle = remainder(rayangle, M_2_PI);
+//     if(rayangle < 0)
+//         rayangle += M_2_PI;
+//     return(rayangle);
+// }
 
-void    cast_ray(double rayangle, int ray)
-{
-    rayangle = normalizeangle(rayangle);
+double calculate_distance(cub3d_t *cub,double x,double y){
+    return (sqrt(pow(cub->x_player - x, 2) + pow(cub->y_player - y, 2)));
 }
-
+double  ray_distance(cub3d_t *cub,double rayangle)
+{
+    int i = 0;
+    while(i >= 0 && i < WIN_WITH && i < WIN_HIGHT)
+    {
+        if (cub->map[(int)(((cub->y_player * TILE_SIZE - sin(rayangle) * i) + TILE_SIZE/2)/ TILE_SIZE)][(int)(((cub->x_player * TILE_SIZE - cos(rayangle) * i) + TILE_SIZE/2) / TILE_SIZE)] == '1')
+            break;
+        else
+        {
+            pixelput(cub, (cub->x_player * TILE_SIZE - cos(rayangle) * i) + TILE_SIZE/2, (cub->y_player * TILE_SIZE - sin(rayangle) * i) + TILE_SIZE/2, 0xff0000);
+            i++;
+        }
+    }
+    return calculate_distance(cub,(cub->x_player * TILE_SIZE - cos(rayangle) * i) + TILE_SIZE/2,(cub->y_player * TILE_SIZE - sin(rayangle) * i) + TILE_SIZE/2);    
+}
 void    draw_rays(cub3d_t *cub)
 {
     double rayangle;
     int ray;
     int i;
 
-    rayangle = cub->ang - (VIEW_ANGLE / 2);
+    rayangle = cub->ang - (FOV_ANGLE / 2);
     ray = 0;
+
     while(ray < NUM_RAYS)
     {
         // cast_ray(rayangle, ray);
         i = 0;
-        while(i < 200)
-        {
-            pixelput(cub, (cub->x_player * 64 - cos(rayangle) * i) + 32, (cub->y_player * 64 - sin(rayangle) * i) + 32, 0xff0000);
-            i++;
-        }
+        cub->rays[ray].distance=ray_distance(cub,rayangle);
         rayangle += VIEW_ANGLE / NUM_RAYS;
         ray++;
     }
@@ -116,52 +128,65 @@ void    draw_2d_map(cub3d_t *cub)
     draw_player(cub);
     draw_angl_view(cub);
     draw_rays(cub);
-}    
+}
 
+int map_has_wall(cub3d_t *cub, double x, double y)
+{
+    double x_check;
+    double y_check;
+
+    x_check = floor(x);
+    y_check = floor(y);
+    if(cub->map[(int)y_check][(int)x_check] != '0')
+        return(1);
+    return(0);
+}
 
 int manag(int keycode, cub3d_t *cub)
 {
+    printf("amgle === %f",cub->ang);
     if (keycode == 53 || keycode == 12)
 	{
 		write(1, "exit\n", 5);
 		exit(1);
 	}
-	else if (keycode == KEY_A)
+	// else if (keycode == KEY_D)
+    // {
+    //     cub->x_player -= 5  * cos(cub->ang + 1.5708);
+    //     cub->y_player -= 5  * sin(cub->ang + 1.5708);
+    // }
+	// else if (keycode == KEY_A)
+    // {
+    //     cub->x_player += 5  * cos(cub->ang + 1.5708);
+    //     cub->y_player += 5  * sin(cub->ang + 1.5708);
+    // }
+    // else if ((keycode == KEY_DOWN || keycode == KEY_S))
+    // {
+    //     cub->x_player += 5 * cos(cub->ang);
+    //     cub->y_player += 5 * sin(cub->ang);
+    // }
+    else if ((keycode == KEY_UP || keycode == KEY_W))
     {
-        cub->x_player -= 0.2;
+        cub->y_player = cub->x_player - 5 * sin(cub->ang);
+        cub->x_player = cub->y_player - 5 * cos(cub->ang);
     }
-	else if (keycode == KEY_D)
-    {
-         cub->x_player += 0.2;
-    }
-    else if (keycode == KEY_DOWN || keycode == KEY_S)
-    {
-        cub->x_player += 0.3 * cos(cub->ang);
-        cub->y_player += 0.3 * sin(cub->ang);
-        
-    }
-    else if (keycode == KEY_UP || keycode == KEY_W)
-    {
-        cub->x_player -= 0.3 * cos(cub->ang);
-        cub->y_player -= 0.3 * sin(cub->ang);
-    }
-    else if (keycode == KEY_LEFT)
-    {
-         cub->ang -= 0.2;
-    }
-    else if (keycode == KEY_RIGHT)
-    {
-         cub->ang += 0.2;
-    }
+    // else if (keycode == KEY_LEFT)
+    // {
+    //      cub->ang -= 0.2;
+    // }
+    // else if (keycode == KEY_RIGHT)
+    // {
+    //      cub->ang += 0.2;
+    // }
 	return (1);
 }
 
 int new_map(cub3d_t *cub)
 {
     mlx_destroy_image(cub->mlx, cub->img);
-    cub->img = mlx_new_image(cub->mlx, cub->todmap->with * 64, cub->todmap->hight * 64);
+    cub->img = mlx_new_image(cub->mlx, cub->todmap->with, cub->todmap->hight);
     cub->add = (int*)mlx_get_data_addr(cub->img, &cub->b, &cub->l, &cub->e);
-    draw_2d_map(cub);
+    draw(cub);
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
     return(0);
 }
