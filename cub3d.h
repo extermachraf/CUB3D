@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:09:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/12 15:41:04 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/14 01:22:15 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "./libftt/libft.h"
 #include "./parsing/pars.h"
 #include "./2DMAP/todmap.h"
+#include "./raycast/raycast.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -26,6 +27,8 @@
 # include <math.h>
 # include <stdbool.h>
 //////////////////////////
+# define PI 3.14159265
+# define TOW_PI 6.28318530
 # define WITH 640
 # define HIGHT 640
 # define BUFFER_SIZE 1

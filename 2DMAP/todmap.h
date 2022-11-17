@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 01:33:23 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/12 17:14:33 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:30:03 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # define KEY_W 13
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-#define FACE_UP 11
-#define FACE_DOWN 22
-#define FACE_RIGHT 33
-#define FACE_LEFT 44
+#define FACE_UP 300
+#define FACE_DOWN 400
+#define FACE_RIGHT 500
+#define FACE_LEFT 600
 #define HORZ 55
 
 t_tood	*get_info_of2d(cub3d_t *cub);
@@ -44,7 +44,8 @@ double  normalizeangle(double rayangle);
 void    cast_ray(double rayangle, int ray, cub3d_t *cub);
 int     face_up_down(double angle);
 int     face_right_left(double angle);
-int map_has_wall(cub3d_t *cub, double x, double y);
+int     map_has_wall(cub3d_t *cub, double x, double y);
 void    draw(cub3d_t *cub);
 void    render_2d_map(cub3d_t *cub);
+char     mapHasWallAt(cub3d_t *cub, float x, float y);
 #endif

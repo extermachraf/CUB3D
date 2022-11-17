@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 00:27:22 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/07 03:42:03 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:33:58 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,14 @@ int one_player(char **str, cub3d_t *cub)
                 cub->x_player = (double )j;
                 cub->y_player = (double )i;
                 if(str[i][j] == 'N')
-                    cub->ang = 1.5708;
+                    cub->ang = 1.5 * M_PI;
                 else if(str[i][j] == 'E')
-                    cub->ang = 0.0;
+                    cub->ang = 0;
                 else if(str[i][j] == 'W')
                     cub->ang = M_PI;
                 else
-                    cub->ang = 4.71239;
+                    cub->ang = M_PI_2;
+                str[i][j] = '0';
                 calc++;
             }
             j++;

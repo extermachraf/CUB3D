@@ -20,15 +20,13 @@ typedef struct t_map
 typedef struct s_tood{
 	int with;
 	int hight;
-    int num_x;
-    int num_y;
 }	t_tood;
 
 typedef struct s_rays
 {
     double  rayangle;
-    double  wall_Hit_X;
-    double  wall_Hit_y;
+    double  wallHitx;
+    double  wallHity;
     double  distance;
 }   t_rays;
 
@@ -39,11 +37,11 @@ typedef struct s_cast
     double x_step;
     double y_step;
     double next_horz_x;
+    double xtocheck;
+    double ytocheck;
     double next_horz_y;
-    int found_horiz_hit;
     double x_horz_w_hit;
     double y_horz_w_hit;
-    int horz_wall_content;
 }   t_cast;
 
 typedef struct cub3d_t
@@ -57,8 +55,9 @@ typedef struct cub3d_t
     int     *f_col;
     int     *c_col;
     char    **map;
+    double *distances;
     char    *info;
-    t_rays  *rays;
+    t_rays  **rays;
     char    *NO;
     char    *SO;
     char    *EA;

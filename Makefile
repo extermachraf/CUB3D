@@ -11,7 +11,8 @@ SRC = main.c \
 	 ./parsing/check_map.c \
 	 ./parsing/check_map1.c \
 	 ./2DMAP/get_info.c \
-	 ./2DMAP/drw_2d_map.c
+	 ./2DMAP/drw_2d_map.c \
+	 ./raycast/raycast.c
 FLAGS =# -Wall -Wextra -Werror -fsanitize=address
 FLA = -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address
 ARG = -o
