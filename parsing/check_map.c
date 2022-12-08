@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 02:04:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/27 01:24:45 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:28:04 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int skip_space_end(char *str)
     int i;
 
     i = ft_strlen(str) - 1;
-    while(i >= 0 && str[i] < 32)
+    while(i >= 0 && str[i] <= 32)
         i--;
     return(i);
 }
@@ -27,7 +27,7 @@ int skip_space_start(char *str)
     int i;
 
     i = 0;
-    while(str[i] && str[i] == ' ')
+    while(str[i] && str[i] <= 32)
         i++;
     return(i);
 }
@@ -66,7 +66,7 @@ int sur_by_walls(char **map)
     a = 0;
     while(map[j][a])
     {
-        if(!(map[0][a] == ' ' || map[0][a] == '1'))
+        if(!(map[j][a] == ' ' || map[j][a] == '1'))
             return(1);
         a++;
     }

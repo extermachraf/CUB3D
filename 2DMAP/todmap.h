@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   todmap.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schoukou <schoukou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 01:33:23 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/15 22:30:03 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:49:01 by schoukou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ int     map_has_wall(cub3d_t *cub, double x, double y);
 void    draw(cub3d_t *cub);
 void    render_2d_map(cub3d_t *cub);
 char     mapHasWallAt(cub3d_t *cub, float x, float y);
+void generate3d(cub3d_t *cub);
+void pixelput_3d(cub3d_t *cub, int x,int y, int color);
 #endif

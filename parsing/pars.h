@@ -28,6 +28,11 @@ typedef struct s_rays
     double  wallHitx;
     double  wallHity;
     double  distance;
+    double  projectionplan;
+    double  projectiowalls;
+    double  wallsheight;
+    double		walltoppixel;
+	double     wallbottompixel;
 }   t_rays;
 
 typedef struct s_cast
@@ -43,6 +48,15 @@ typedef struct s_cast
     double x_horz_w_hit;
     double y_horz_w_hit;
 }   t_cast;
+
+typedef struct texture_t
+{
+    void	*img;
+    char    *add;
+    int     bp;
+    int     end;
+    int     len;
+}   texture_t;
 
 typedef struct cub3d_t
 {
@@ -68,7 +82,9 @@ typedef struct cub3d_t
     void    *img;
     int     *add;
     t_tood *todmap;
+    texture_t *texture;
 }   cub3d_t;
+
 
 typedef struct lexer
 {
@@ -119,4 +135,7 @@ int     check_first_line(char **str);
 int     check_last_line(char **str);
 int     check_zeros(char **str, int i, int j);
 int     one_player(char **str, cub3d_t *cub);
+unsigned int pixelget(cub3d_t *cub, int x,int y, int i);
+int check_nums(char **str);
+void get_add_xml(cub3d_t *cub);
 #endif

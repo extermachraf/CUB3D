@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schoukou <schoukou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:30:28 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/17 00:10:23 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/11/25 22:09:35 by schoukou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double  normalizeangle(double rayangle)
     return(rayangle);
 }
 
-double distanceBetweenPoints(float x1, float y1, float x2, float y2)
+double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 {
     return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }

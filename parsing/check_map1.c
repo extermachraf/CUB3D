@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 03:59:08 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/10/27 00:42:33 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:22:48 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ int check_spaces(char **str)
         j = skip_space_start(str[i]);
         while(str[i][j] && j <= skip_space_end(str[i]))
         {
-            if(str[i][j] == ' ')
-                if(find_wall(str, i, j))
-                    return(1);
             if(str[i][j] == '0')
                 if(check_zeros(str, i, j))
                     return(1);
@@ -87,22 +84,22 @@ int check_spaces(char **str)
 
 int check_zeros(char **str, int i, int j)
 {
-    if(!(str[i - 1][j] == '1' || str[i - 1][j] == ' '
+    if(!(str[i - 1][j] == '1'
         || str[i - 1][j] == 'W' || str[i - 1][j] == 'N'
         || str[i - 1][j] == 'S' || str[i - 1][j] == 'E'
         ||str[i - 1][j] == '0'))
         return(1);
-    else if(!(str[i + 1][j] == '1' || str[i + 1][j] == ' '
+    else if(!(str[i + 1][j] == '1'
         || str[i + 1][j] == 'W' || str[i + 1][j] == 'N'
         || str[i + 1][j] == 'S' || str[i + 1][j] == 'E'
         || str[i + 1][j] == '0'))
         return(1);
-    else if(!(str[i][j + 1] == '1' || str[i][j + 1] == ' '
+    else if(!(str[i][j + 1] == '1'
         || str[i][j + 1] == 'W' || str[i][j + 1] == 'N'
         || str[i][j + 1] == 'S' || str[i][j + 1] == 'E'
         || str[i][j + 1] == '0'))
         return(1);
-    else if(!(str[i][j - 1] == '1' || str[i][j - 1] == ' '
+    else if(!(str[i][j - 1] == '1'
         || str[i][j - 1] == 'W' || str[i][j - 1] == 'N'
         || str[i][j - 1] == 'S' || str[i][j - 1] == 'E'
         || str[i][j - 1] == '0'))

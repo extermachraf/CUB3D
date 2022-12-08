@@ -280,7 +280,9 @@ void castAllRays() {
 
     for (int stripId = 0; stripId < NUM_RAYS; stripId++) {
         castRay(rayAngle, stripId);
-        rayAngle += FOV_ANGLE / NUM_RAYS;
+        //rayAngle += FOV_ANGLE / NUM_RAYS;
+        rayAngle += cub->ang + atan((stripId -  800 / 2) / cub->rays[stripId]->projectionplan);
+
     }
 }
 

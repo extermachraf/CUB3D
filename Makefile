@@ -12,9 +12,10 @@ SRC = main.c \
 	 ./parsing/check_map1.c \
 	 ./2DMAP/get_info.c \
 	 ./2DMAP/drw_2d_map.c \
-	 ./raycast/raycast.c
+	 ./raycast/raycast.c \
+	 ./genrate3d.c
 FLAGS =# -Wall -Wextra -Werror -fsanitize=address
-FLA = -lmlx -framework OpenGL -framework AppKit -g3 -fsanitize=address
+FLA = -lmlx -framework OpenGL -framework AppKit #-fsanitize=address
 ARG = -o
 #-fsanitize=address
 all : $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schoukou <schoukou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:09:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/14 01:22:15 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:02:23 by schoukou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@
 //////////////////////////
 # define PI 3.14159265
 # define TOW_PI 6.28318530
-# define WITH 640
-# define HIGHT 640
 # define BUFFER_SIZE 1
-# define TILE_SIZE 32
+# define _SIZE 64
 # define FOV_ANGLE 60 * (M_PI / 180)
-# define VIEW_ANGLE 1.0472
 # define INCR 0.0349066
-# define WIN_WITH 750
-# define WIN_HIGHT 750
-# define NUM_RAYS (WITH / 1)
+# define WIN_WITH 2000
+# define WIN_HIGHT 1000
+# define NUM_RAYS (WIN_WITH)
+# define TILE_SIZE 64
 
 
 

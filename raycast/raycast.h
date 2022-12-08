@@ -3,5 +3,5 @@
 #include "../cub3d.h"
 
 void    cast_rays(cub3d_t *cub);
-double distanceBetweenPoints(float x1, float y1, float x2, float y2);
+double distanceBetweenPoints(double x1, double y1, double x2, double y2);
 #endif
