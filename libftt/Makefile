@@ -6,7 +6,7 @@
 #    By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 01:36:33 by ael-kouc          #+#    #+#              #
-#    Updated: 2022/10/26 02:26:46 by ael-kouc         ###   ########.fr        #
+#    Updated: 2022/12/09 15:03:24 by ael-kouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,15 @@ ARG = -c
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	ar -rc $(NAME) $(OBJS)
+	@ar -rc $(NAME) $(OBJS)
 	
 $(OBJS):
-	$(CC) $(FLAGS) $(SRC) $(ARG)
+	@$(CC) $(FLAGS) $(SRC) $(ARG)
 
 clean : 
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schoukou <schoukou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:30:28 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/11/25 22:09:35 by schoukou         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:05:49 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
     return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
-// // void    hor(double rayangle, int ray, cub3d_t *cub)
+// // void    hor(double rayangle, int ray, t_cubd *cub)
 // // {
 // //     int isRayFacingDown = rayangle > 0 && rayangle < PI;
 // //     int isRayFacingUp = !isRayFacingDown;
@@ -36,8 +36,8 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // //     float xintercept, yintercept;
 // //     float xstep, ystep;
 
-// //     float horzWallHitX = 0;
-// //     float horzWallHitY = 0;
+// //     float horzwallhitx = 0;
+// //     float horzwallhity = 0;
 
 
 // //     yintercept = floor(cub->y_player / TILE_SIZE) * TILE_SIZE;
@@ -62,8 +62,8 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // //         float yToCheck = nextHorzTouchY + (isRayFacingUp ? -1 : 0);
         
 // //         if (mapHasWallAt(cub, xToCheck, yToCheck)) {
-// //             cub->rays[ray].HwallHitx =  nextHorzTouchX;
-// //             cub->rays[ray].HwallHity =  nextHorzTouchY;
+// //             cub->rays[ray].Hwallhitx =  nextHorzTouchX;
+// //             cub->rays[ray].Hwallhity =  nextHorzTouchY;
 // //             cub->rays[ray].distanceH = distanceBetweenPoints(cub->x_player, cub->y_player, nextHorzTouchX, nextHorzTouchY);
 // //             break;
 // //         } else {
@@ -73,10 +73,10 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // //     }
 // // }
 
-// // void    ver(double rayangle, int ray, cub3d_t *cub)
+// // void    ver(double rayangle, int ray, t_cubd *cub)
 // // {
-// //     float vertWallHitX = 0;
-// //     float vertWallHitY = 0;
+// //     float vertwallhitx = 0;
+// //     float vertwallhity = 0;
 
 // //     int isRayFacingDown = rayangle > 0 && rayangle < M_PI;
 // //     int isRayFacingUp = !isRayFacingDown;
@@ -107,8 +107,8 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // //         float yToCheck = nextVertTouchY;
         
 // //         if (mapHasWallAt(cub, xToCheck, yToCheck)) {
-// //             cub->rays[ray].VwallHitx = nextVertTouchX;
-// //             cub->rays[ray].VwallHity = nextVertTouchY;
+// //             cub->rays[ray].Vwallhitx = nextVertTouchX;
+// //             cub->rays[ray].Vwallhity = nextVertTouchY;
 // //             cub->rays[ray].distanceV = distanceBetweenPoints(cub->x_player, cub->y_player, nextVertTouchX, nextVertTouchY);
 // //             break;
 // //         } else {
@@ -119,7 +119,7 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // // }
 
 
-// // double    cast_ray_ray(double rayangle, int ray, cub3d_t *cub)
+// // double    cast_ray_ray(double rayangle, int ray, t_cubd *cub)
 // // {
 // //     rayangle = normalizeangle(rayangle);
 // //     hor(rayangle, ray, cub);
@@ -131,12 +131,12 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 // //         return(cub->rays[ray].distanceV);
     
 // // }
-// double find_vertic_hit(double rayangle, int ray, cub3d_t *cub)
+// double find_vertic_hit(double rayangle, int ray, t_cubd *cub)
 // {
 //     double xintercept, yintercept;
 //     double xstep, ystep;
-//     double horzWallHitX;
-//     double horzWallHitY;
+//     double horzwallhitx;
+//     double horzwallhity;
 
 //     xstep = 0;
 //     ystep = 0;
@@ -170,12 +170,12 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 //     return(5000);
 // }
 
-// double find_horiz_hit(double rayangle, int ray, cub3d_t *cub)
+// double find_horiz_hit(double rayangle, int ray, t_cubd *cub)
 // {
 //     double xintercept, yintercept;
 //     double xstep, ystep;
-//     double horzWallHitX;
-//     double horzWallHitY;
+//     double horzwallhitx;
+//     double horzwallhity;
 
 //     xstep = 0;
 //     ystep = 0;
@@ -212,7 +212,7 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 //     return(5000);
 // }
 
-// double  cast_allrays(double rayangle, int ray, cub3d_t *cub)
+// double  cast_allrays(double rayangle, int ray, t_cubd *cub)
 // {
 //     double distance;
 //     double vertical;
@@ -230,7 +230,7 @@ double distanceBetweenPoints(double x1, double y1, double x2, double y2)
 //     return(vertical);
 // }
 
-// void    cast_rays(cub3d_t *cub)
+// void    cast_rays(t_cubd *cub)
 // {
 //     double rayangle;
 //     int    index_ray;

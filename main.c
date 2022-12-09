@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/12/08 19:16:48 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:44:42 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,46 +23,23 @@ int	exit_mouse(int key)
 	return (0);
 }
 
-void    init_globals()
+t_g    *init_globals()
 {
-    flag_no = 1;
-    flag_so = 1;
-    flag_we = 1;
-    flag_ea = 1;
-    flag_f = 1;
-    flag_c = 1;
-    take_the_map = 6;
+    t_g *g;
+
+    g = malloc(sizeof(t_g));
+    g->flag_no = 1;
+    g->flag_so = 1;
+    g->flag_we = 1;
+    g->flag_ea = 1;
+    g->flag_f = 1;
+    g->flag_c = 1;
+    g->take_the_map = 6;
+    return (g);
 }
 
-void    render_2d_map(cub3d_t *cub)
+void    draw(t_cubd *cub)
 {
-    int i;
-    int j;
-
-    i = 0;
-    while(cub->map[i])
-    {
-        j = 0;
-        while(cub->map[i][j])
-        {
-            if(cub->map[i][j] == '1')
-                draw_car(cub, i, j);
-            j++;
-        }
-        i++;
-    }
-}
-
-void    draw(cub3d_t *cub)
-{
-    //cub->x_player = cub->x_player * TILE_SIZE + TILE_SIZE / 2;
-    //cub->y_player = cub->y_player * TILE_SIZE + TILE_SIZE / 2;
-    //render_2d_map(cub);
-    //draw_player(cub);
-    //draw_angl_view(cub);
-    //cast_rays(cub);
-    // cub->texture = malloc(sizeof(texture_t) * 4);
-    // get_add_xml(cub);
     int i;
     int x;
 
@@ -70,7 +47,6 @@ void    draw(cub3d_t *cub)
     char *path2;
     char *path3;
     char *path4;
-
 
     path = "night.xpm";
     cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx, path, &i, &x);
@@ -91,20 +67,18 @@ void    draw(cub3d_t *cub)
 
 int main(int ac, char **av)
 {
-    cub3d_t *cub;
+    t_cubd *cub;
     int i = 0;
 
     if(ac != 2)
         return(0);
-    init_globals();
-    cub = malloc(sizeof(cub3d_t));
+    cub = malloc(sizeof(t_cubd));
     cub = return_map(av[1], cub);
     check_map(cub);
-    cub->todmap = get_info_of2d(cub);
     cub->x_player = cub->x_player * TILE_SIZE + TILE_SIZE / 2;
     cub->y_player = cub->y_player * TILE_SIZE + TILE_SIZE / 2;
     cub->rays = malloc(sizeof(t_rays *) * NUM_RAYS);
-    cub->texture = malloc(sizeof(texture_t) * 4);
+    cub->texture = malloc(sizeof(t_texture) * 4);
     while(i < NUM_RAYS)
     {
         cub->rays[i] = malloc(sizeof(t_rays));
@@ -120,10 +94,4 @@ int main(int ac, char **av)
     mlx_loop_hook(cub->mlx, new_map, cub);
     mlx_hook(cub->win, 17, 1L << 0, exit_mouse, &cub);
     mlx_loop(cub->mlx);
-    // mlx_key_hook(nd.win, management, &cub);
 }
-
-//1 -player
-//sur by walls
-//espace
-//player inside map
