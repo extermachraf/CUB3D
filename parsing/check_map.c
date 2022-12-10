@@ -6,49 +6,11 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 02:04:58 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/12/09 17:11:54 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/10 11:05:57 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	skip_space_end(char *str)
-{
-	int	i;
-
-	i = ft_strlen(str) - 1;
-	while (i >= 0 && str[i] <= 32)
-		i--;
-	return (i);
-}
-
-int	skip_space_start(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] <= 32)
-		i++;
-	return (i);
-}
-
-int	check_1(char **str)
-{
-	int	i;
-	int	a;
-	int	b;
-
-	i = 1;
-	while (str[i])
-	{
-		a = skip_space_end(str[i]);
-		b = skip_space_start(str[i]);
-		if (!(str[i][a] == '1' && str[i][b] == '1'))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	sur_by_walls(char **map)
 {
@@ -113,7 +75,7 @@ void	free_cub(t_cubd *cub)
 	free_double_p(cub->map);
 }
 
-void	check_textures(t_cubd *cub)
+void	check_txs(t_cubd *cub)
 {
 	int	fd[4];
 	int	f;
@@ -144,7 +106,7 @@ void	check_textures(t_cubd *cub)
 
 void	check_map(t_cubd *cub)
 {
-	check_textures(cub);
+	check_txs(cub);
 	if (all_element(cub->map) || sur_by_walls(cub->map)
 		|| check_1(cub->map) || check_spaces(cub->map)
 		|| one_player(cub->map, cub))

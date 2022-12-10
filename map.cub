@@ -1,11 +1,11 @@
-NO night.xpm
-WE ./night2.xpm
-SO ./night3.xpm
-EA ./night4.xpm
+NO ./textures/night.xpm
+WE ./textures/night2.xpm
+SO ./textures/night3.xpm
+EA ./textures/night4.xpm
 
 
-C 225,30,5
-F 220,100,255
+C 63,59,108
+F 64,66,88
 
     1111111111111111111111111
     10000000000000000000000001
