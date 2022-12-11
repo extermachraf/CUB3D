@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:40:21 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/12/10 10:56:50 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/11 10:31:29 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,5 @@ int				generate3d_sky(t_cubd *cub, int j, int ray);
 void			norm_generate3d(t_cubd *cub, int ray, double i);
 int				rgb_to_int(int r, int g, int b);
 int				direction(t_cubd *cub, int ray);
+void			check_player(char **str, int i, int j);
 #endif

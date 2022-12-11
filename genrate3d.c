@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 18:43:21 by schoukou          #+#    #+#             */
-/*   Updated: 2022/12/10 10:56:12 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/11 10:06:23 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	generate3d(t_cubd *cub)
 			cub->norm.distancefromtop = i + (cub->rays[ray]->wallsheight / 2)
 				- (WIN_HIGHT / 2);
 			cub->norm.txoffset_y = cub->norm.distancefromtop
-				* ((float)TILE_SIZE / cub->rays[ray]->wallsheight);
+				* ((double)TILE_SIZE / cub->rays[ray]->wallsheight);
 			norm_generate3d(cub, ray, i);
 			i++;
 		}

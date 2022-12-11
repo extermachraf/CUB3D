@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:14:49 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/12/10 11:09:48 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/11 09:04:52 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ t_cubd	*return_map(char *av, t_cubd *cub)
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
 	{
-		free(cub);
 		printf("error\n");
 		exit(1);
 	}

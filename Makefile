@@ -18,7 +18,7 @@ SRC = main.c \
 	 ./generate3d_2.c \
 	 ./2DMAP/norm_2d_map.c \
 	 norm1.c
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 FLA = -lmlx -framework OpenGL -O3 -framework AppKit #-fsanitize=address
 ARG = -o
 all : $(NAME)

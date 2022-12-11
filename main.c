@@ -6,7 +6,7 @@
 /*   By: ael-kouc <ael-kouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:06 by ael-kouc          #+#    #+#             */
-/*   Updated: 2022/12/10 11:12:10 by ael-kouc         ###   ########.fr       */
+/*   Updated: 2022/12/11 09:18:02 by ael-kouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,11 @@ t_g	*init_globals(void)
 	return (g);
 }
 
-void	check_tx(t_cubd *cub)
+void	check_tx(t_cubd *cub, int index)
 {
-	if (cub->tx[0].img == NULL)
+	if (cub->tx[index].img == NULL)
 	{
-		printf("error tx");
-		exit(1);
-	}
-	if (cub->tx[1].img == NULL)
-	{
-		printf("error tx");
-		exit(1);
-	}
-	if (cub->tx[2].img == NULL)
-	{
-		printf("error tx");
-		exit(1);
-	}
-	if (cub->tx[3].img == NULL)
-	{
-		printf("error tx");
+		printf("error tx\n");
 		exit(1);
 	}
 }
@@ -67,19 +52,19 @@ void	draw(t_cubd *cub)
 	int	x;
 
 	cub->tx[0].img = mlx_xpm_file_to_image(cub->mlx, cub->no, &i, &x);
-	check_tx(cub);
+	check_tx(cub, 0);
 	cub->tx[0].add = mlx_get_data_addr(cub->tx[0].img,
 			&cub->tx[0].bp, &cub->tx[0].len, &cub->tx[0].end);
 	cub->tx[1].img = mlx_xpm_file_to_image(cub->mlx, cub->ea, &i, &x);
-	check_tx(cub);
+	check_tx(cub, 1);
 	cub->tx[1].add = mlx_get_data_addr(cub->tx[1].img,
 			&cub->tx[1].bp, &cub->tx[1].len, &cub->tx[0].end);
 	cub->tx[2].img = mlx_xpm_file_to_image(cub->mlx, cub->we, &i, &x);
-	check_tx(cub);
+	check_tx(cub, 2);
 	cub->tx[2].add = mlx_get_data_addr(cub->tx[2].img,
 			&cub->tx[2].bp, &cub->tx[2].len, &cub->tx[0].end);
 	cub->tx[3].img = mlx_xpm_file_to_image(cub->mlx, cub->so, &i, &x);
-	check_tx(cub);
+	check_tx(cub, 3);
 	cub->tx[3].add = mlx_get_data_addr(cub->tx[3].img,
 			&cub->tx[3].bp, &cub->tx[3].len, &cub->tx[0].end);
 	draw_rays(cub);

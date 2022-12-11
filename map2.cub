@@ -1,0 +1,13 @@
+F 64,66,88
+WE ./textures/night2.xpm
+EA ./textures/night4.xpm
+SO ./textures/night3.xpm
+NO ./textures/night.xpm 
+
+
+
+C 6,59,100
+ 
+11111111111111111111111111111
+1000000000000N0000000000000001
+11111111111111111111111111111
